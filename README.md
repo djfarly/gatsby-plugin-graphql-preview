@@ -21,3 +21,5 @@ Currently this works by doing the following:
   context? Context also always goes to graphql, which means deep objects are
   kind of a no-no because their type is not very well suited for graphql (it's
   also not needed there).
+  - warp-page needs a specific ssr behaviour where it does not attempt to load
+    any data. Currently it complains about not usind node-fetch.
