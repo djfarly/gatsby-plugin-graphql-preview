@@ -51,23 +51,23 @@ exports.onCreatePage = (
   { page, actions: { createPage }, store },
   { fieldName, typeName }
 ) => {
-  const { components } = store.getState();
-  const { query } = components.get(page.component);
-
-  // isolated query must be a string, so gatsby graphql does not get confused
-  let isolatedQuery = '';
-  if (query) {
-    isolatedQuery = JSON.stringify(
-      getIsolatedQuery(query, fieldName, typeName)
-    );
-  }
-
   createPage({
     ...page,
     path: `/_preview${page.path}`,
     context: {
       ...page.context,
-      [PREVIEW_CONTEXT]: isolatedQuery
+      [PREVIEW_CONTEXT]: page.pagePath
     }
   });
+};
+
+exports.onCreateWebpackConfig = ({ store }, { fieldName, typeName }) => {
+  componentQueries = {};
+  for (let [componentPath, { query }] of store.getState().components) {
+    componentQueries[componentPath] = query
+      ? getIsolatedQuery(query, fieldName, typeName)
+      : null;
+  }
+
+  // WEBPACK DEFINE COMPONENT QUERIES!
 };
