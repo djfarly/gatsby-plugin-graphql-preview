@@ -1,0 +1,20 @@
+{
+  "name": "gatsby-plugin-graphql-preview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-boost": "^0.1.28",
+    "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1",
+    "lodash.clonedeep": "^4.5.0",
+    "react-apollo-hooks": "^0.4.0",
+    "traverse": "^0.6.6"
+  }
+}
