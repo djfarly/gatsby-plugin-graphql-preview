@@ -2,6 +2,9 @@ const { PREVIEW_CONTEXT } = require('./const');
 const gql = require('graphql-tag');
 const traverse = require('traverse');
 const cloneDeep = require('lodash.clonedeep');
+const MurmurHash3 = require('imurmurhash');
+
+const getComponentId = componentPath => MurmurHash3(componentPath).result();
 
 const getQuery = query => {
   if (typeof query === 'object' && query.definitions) {
@@ -56,18 +59,29 @@ exports.onCreatePage = (
     path: `/_preview${page.path}`,
     context: {
       ...page.context,
-      [PREVIEW_CONTEXT]: page.pagePath
+      [PREVIEW_CONTEXT]: getComponentId(page.componentPath)
     }
   });
 };
 
-exports.onCreateWebpackConfig = ({ store }, { fieldName, typeName }) => {
-  componentQueries = {};
+exports.onCreateWebpackConfig = (
+  { store, actions, plugins },
+  { fieldName, typeName }
+) => {
+  isolatedQueries = {};
   for (let [componentPath, { query }] of store.getState().components) {
-    componentQueries[componentPath] = query
+    isolatedQueries[getComponentId(componentPath)] = query
       ? getIsolatedQuery(query, fieldName, typeName)
       : null;
   }
 
-  // WEBPACK DEFINE COMPONENT QUERIES!
+  actions.setWebpackConfig({
+    plugins: [
+      plugins.define({
+        GATSBY_PLUGIN_GRAPHQL_PREVIEW_ISOLATED_QUERIES: JSON.stringify(
+          isolatedQueries
+        )
+      })
+    ]
+  });
 };

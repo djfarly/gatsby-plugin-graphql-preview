@@ -1,0 +1,5 @@
+{
+  "globals": {
+    "GATSBY_PLUGIN_GRAPHQL_PREVIEW_ISOLATED_QUERIES": false
+  }
+}

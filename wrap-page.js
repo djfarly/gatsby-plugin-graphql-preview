@@ -4,6 +4,8 @@ const { PREVIEW_CONTEXT } = require('./const');
 const ApolloClient = require('apollo-boost').default;
 const { ApolloProvider, useQuery } = require('react-apollo-hooks');
 
+const isolatedQueries = GATSBY_PLUGIN_GRAPHQL_PREVIEW_ISOLATED_QUERIES;
+
 function prefixTypename(data, prefix) {
   return transformObj(data, (key, value) => {
     if (key === '__typename') {
@@ -20,8 +22,8 @@ function transformObj(obj, fn) {
 
 // eslint-disable-next-line react/prop-types,react/display-name
 module.exports = ({ element, props }, options) => {
-  const _isolatedQuery = props.pageContext[PREVIEW_CONTEXT];
-  const isolatedQuery = _isolatedQuery && JSON.parse(_isolatedQuery);
+  const componentId = props.pageContext[PREVIEW_CONTEXT];
+  const isolatedQuery = isolatedQueries[componentId];
 
   if (!isolatedQuery) return element;
 
