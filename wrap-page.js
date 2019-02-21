@@ -1,10 +1,21 @@
 const React = require(`react`);
-const { cloneElement, useReducer } = React;
+const { Fragment, cloneElement, useReducer, useEffect, useRef } = React;
 const { PREVIEW_CONTEXT } = require('./const');
-const ApolloClient = require('apollo-boost').default;
 const { ApolloProvider, useQuery } = require('react-apollo-hooks');
+const { IntrospectionFragmentMatcher } = require('apollo-cache-inmemory');
+const ApolloClient = require('apollo-client').default;
+const { InMemoryCache } = require('apollo-cache-inmemory');
+const { HttpLink } = require('apollo-link-http');
+const murmurhash = require('imurmurhash');
 
 const isolatedQueries = GATSBY_PLUGIN_GRAPHQL_PREVIEW_ISOLATED_QUERIES;
+const fragmentTypes = GATSBY_PLUGIN_GRAPHQL_PREVIEW_FRAGMENT_TYPES;
+
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+  introspectionQueryResultData: fragmentTypes
+});
+
+const cache = new InMemoryCache({ fragmentMatcher });
 
 function prefixTypename(data, prefix) {
   return transformObj(data, (key, value) => {
@@ -30,9 +41,12 @@ module.exports = ({ element, props }, options) => {
   const { fieldName, typeName, url, headers, credentials } = options;
 
   const client = new ApolloClient({
-    uri: url,
-    headers,
-    credentials
+    cache,
+    link: new HttpLink({
+      uri: url,
+      headers,
+      credentials
+    })
   });
 
   return (
@@ -71,27 +85,37 @@ function PreviewWrapper({
     }
   );
 
-  const { data, error, loading, refetch } = useQuery(isolatedQuery, {
-    pollInterval
+  const { data, error, loading, refetch, ...rest } = useQuery(isolatedQuery, {
+    pollInterval,
+    notifyOnNetworkStatusChange: true,
+    variables: elementProps.pageContext
   });
+
+  const lastData = useRef();
 
   let content;
 
-  if (error || !data) {
+  if (error || (!data && !lastData.current)) {
     content = <div>Error loading preview data.</div>;
-  } else if (loading) {
+    console.error(error);
+  } else if (loading && !lastData.current) {
     content = <div>Fetching preview data…</div>;
   } else {
+    if (data) {
+      lastData.current = data;
+    }
     content = cloneElement(element, {
       data: {
         ...elementProps.data,
-        [fieldName]: prefixTypename(data, typeName)
+        [fieldName]: prefixTypename(data || lastData.current, typeName)
       }
     });
   }
 
   return (
-    <>
+    <Fragment
+      key={murmurhash(JSON.stringify(data || lastData.current)).result()}
+    >
       {content}
       <PreviewUI
         onPollInterval={payload =>
@@ -102,7 +126,7 @@ function PreviewWrapper({
         loading={loading}
         error={error}
       />
-    </>
+    </Fragment>
   );
 }
 
