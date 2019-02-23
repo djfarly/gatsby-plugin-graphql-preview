@@ -1,14 +1,12 @@
-const React = require(`react`);
-const { Fragment, cloneElement, useReducer, useEffect, useRef } = React;
+const React = require('react');
 const { PREVIEW_CONTEXT } = require('./const');
-const { ApolloProvider, useQuery } = require('react-apollo-hooks');
+const { ApolloProvider } = require('react-apollo-hooks');
 const { IntrospectionFragmentMatcher } = require('apollo-cache-inmemory');
 const ApolloClient = require('apollo-client').default;
 const { InMemoryCache } = require('apollo-cache-inmemory');
 const { HttpLink } = require('apollo-link-http');
-const murmurhash = require('imurmurhash');
 const PreviewUIComponent = require('./components/PreviewUI').default;
-const PreviewWrapper = require('./components/PreviewWrapper').default;
+const PreviewFetcher = require('./components/PreviewFetcher').default;
 
 const isolatedQueries = GATSBY_PLUGIN_GRAPHQL_PREVIEW_ISOLATED_QUERIES;
 const fragmentTypes = GATSBY_PLUGIN_GRAPHQL_PREVIEW_FRAGMENT_TYPES;
@@ -53,13 +51,14 @@ exports = ({ element, props }, options) => {
 
   return (
     <ApolloProvider client={client}>
-      <PreviewWrapper
+      <PreviewFetcher
         element={element}
         fieldName={fieldName}
         typeName={typeName}
         elementProps={props}
         isolatedQuery={isolatedQuery}
         PreviewUIComponent={PreviewUIComponent}
+        initialPollInterval={1e4}
       />
     </ApolloProvider>
   );
