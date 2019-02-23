@@ -45,9 +45,9 @@ function PreviewUI({ setPollInterval, pollInterval, refetch, loading, error }) {
               }}
               value={pollInterval}
             >
-              <option value={500}>½s</option>
-              <option value={2500}>2½s</option>
-              <option value={10000}>10s</option>
+              <option value={500}>0.5 seconds</option>
+              <option value={2500}>2.5 seconds</option>
+              <option value={10000}>10 seconds</option>
             </select>
           </label>
         </div>
