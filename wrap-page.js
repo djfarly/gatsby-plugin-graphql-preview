@@ -14,26 +14,12 @@ const fragmentTypes = GATSBY_PLUGIN_GRAPHQL_PREVIEW_FRAGMENT_TYPES;
 const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData: fragmentTypes
 });
-
 const cache = new InMemoryCache({ fragmentMatcher });
 
-function prefixTypename(data, prefix) {
-  return transformObj(data, (key, value) => {
-    if (key === '__typename') {
-      return `${prefix}_${value}`;
-    }
-
-    return value;
-  });
-}
-
-function transformObj(obj, fn) {
-  return JSON.parse(JSON.stringify(obj), fn);
-}
-
 // eslint-disable-next-line react/prop-types,react/display-name
-exports = ({ element, props }, options) => {
+exports.default = ({ element, props }, options) => {
   const componentId = props.pageContext[PREVIEW_CONTEXT];
+  console.log({ componentId });
   const isolatedQuery = isolatedQueries[componentId];
 
   if (!isolatedQuery) return element;

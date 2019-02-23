@@ -4,7 +4,7 @@ const PreviewUIComponent = require('./components/PreviewUI').default;
 const PreviewFetcherSSR = require('./components/PreviewFetcherSSR').default;
 
 // eslint-disable-next-line react/prop-types,react/display-name
-exports = ({ element, props }) => {
+exports.default = ({ element, props }) => {
   const componentId = props.pageContext[PREVIEW_CONTEXT];
 
   if (!componentId) return element;

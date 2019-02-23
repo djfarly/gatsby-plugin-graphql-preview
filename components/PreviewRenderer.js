@@ -35,7 +35,7 @@ PreviewRenderer.propTypes = {
     .isRequired,
   refetch: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  error: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,
+  error: PropTypes.object,
   data: PropTypes.oneOfType([PropTypes.object, PropTypes.oneOf([null])])
 };
 

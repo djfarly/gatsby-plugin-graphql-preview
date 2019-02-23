@@ -8,14 +8,19 @@ const style = {
     zIndex: Number.MAX_SAFE_INTEGER,
     padding: '4px 6px',
     borderRadius: 5,
-    border: '1px solid rgba(230, 230, 230, 0.5)',
+    top: 0,
+    left: 0,
+    border: '1px solid rgba(255, 255, 255, 1)',
     backgroundColor: 'rgba(240, 240, 240, 0.75)',
     boxShadow: '2px 2px 10px rgba(0, 0, 0, 0.15)'
   },
   handle: {
-    height: 10,
-    width: 10,
-    backgroundColor: 'green'
+    float: 'right',
+    padding: '0 0.2em',
+    backgroundColor: 'rgba(255, 255, 255, 1)',
+    color: 'rgba(128, 128, 128, .75)',
+    borderRadius: 5,
+    cursor: 'move'
   }
 };
 
@@ -24,7 +29,7 @@ function PreviewUI({ setPollInterval, pollInterval, refetch, loading, error }) {
     <Draggable handle=".handle" defaultPosition={{ x: 10, y: 10 }}>
       <div style={style.container}>
         <div className="handle" style={style.handle}>
-          …
+          ✛
         </div>
         <div>
           <strong>
@@ -62,7 +67,7 @@ PreviewUI.propTypes = {
     .isRequired,
   refetch: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  error: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired
+  error: PropTypes.object
 };
 
 exports.default = PreviewUI;

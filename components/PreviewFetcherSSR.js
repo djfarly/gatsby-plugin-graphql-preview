@@ -1,6 +1,6 @@
 const React = require('react');
 const PropTypes = require('prop-types');
-const { PreviewRenderer } = require('./PreviewRenderer').default;
+const PreviewRenderer = require('./PreviewRenderer').default;
 
 const noop = () => {};
 

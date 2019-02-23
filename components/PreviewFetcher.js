@@ -2,9 +2,23 @@ const React = require('react');
 const PropTypes = require('prop-types');
 const { useQuery } = require('react-apollo-hooks');
 const murmurhash = require('imurmurhash');
-const { PreviewRenderer } = require('./PreviewRenderer').default;
+const PreviewRenderer = require('./PreviewRenderer').default;
 
 const { useState, useRef } = React;
+
+function prefixTypename(data, prefix) {
+  return transformObj(data, (key, value) => {
+    if (key === '__typename') {
+      return `${prefix}_${value}`;
+    }
+
+    return value;
+  });
+}
+
+function transformObj(obj, fn) {
+  return JSON.parse(JSON.stringify(obj), fn);
+}
 
 function PreviewFetcher({
   element,
@@ -13,9 +27,9 @@ function PreviewFetcher({
   typeName,
   isolatedQuery,
   PreviewUIComponent,
-  initalPollInterval
+  initialPollInterval
 }) {
-  const [pollInterval, setPollInterval] = useState(initalPollInterval);
+  const [pollInterval, setPollInterval] = useState(initialPollInterval);
 
   const { data: fetchedData, error, loading, refetch, ...rest } = useQuery(
     isolatedQuery,
@@ -60,7 +74,7 @@ PreviewFetcher.propTypes = {
   typeName: PropTypes.string.isRequired,
   isolatedQuery: PropTypes.object.isRequired,
   PreviewUIComponent: PropTypes.func.isRequired,
-  initalPollInterval: PropTypes.number.isRequired
+  initialPollInterval: PropTypes.number.isRequired
 };
 
 exports.default = PreviewFetcher;
