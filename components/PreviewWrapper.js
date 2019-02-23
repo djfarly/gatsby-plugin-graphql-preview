@@ -1,9 +1,7 @@
 const React = require('react');
 const PropTypes = require('prop-types');
 
-const { Fragment, useReducer } = React;
-
-const SET_POLL_INTERVAL = 'SET_POLL_INTERVAL';
+const { Fragment, useState } = React;
 
 function PreviewWrapper({
   element,
@@ -13,19 +11,7 @@ function PreviewWrapper({
   isolatedQuery,
   PreviewUIComponent
 }) {
-  const [{ pollInterval }, dispatch] = useReducer(
-    (state, { type, payload }) => {
-      switch (type) {
-        case SET_POLL_INTERVAL:
-          return { ...state, pollInterval: payload };
-        default:
-          throw new Error(`Unknown action type ${type}`);
-      }
-    },
-    {
-      pollInterval: 10000
-    }
-  );
+  const [pollInterval, setPollInterval] = useState(1e4);
 
   const { data, error, loading, refetch, ...rest } = useQuery(isolatedQuery, {
     pollInterval,
@@ -60,11 +46,9 @@ function PreviewWrapper({
     >
       {content}
       <PreviewUIComponent
-        onPollInterval={payload =>
-          dispatch({ type: SET_POLL_INTERVAL, payload })
-        }
+        setPollInterval={newPollInterval => setPollInterval(newPollInterval)}
         pollInterval={pollInterval}
-        onRefetch={() => refetch()}
+        refetch={() => refetch()}
         loading={loading}
         error={error}
       />
