@@ -42,7 +42,7 @@ function PreviewFetcher({
 
   const mergedDataPropsRef = useRef({ data: null, key: null });
 
-  if (fetchedData) {
+  if (fetchedData && Object.keys(fetchedData).length !== 0) {
     mergedDataPropsRef.current = {
       data: {
         ...elementProps.data,
