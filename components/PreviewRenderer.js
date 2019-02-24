@@ -1,7 +1,21 @@
 const React = require('react');
 const PropTypes = require('prop-types');
 
-const { cloneElement } = React;
+const { cloneElement, Children } = React;
+
+function deepClonePageElement(element, props) {
+  return cloneElement(element, {
+    ...props,
+    ...(element.props.children
+      ? {
+          children: deepClonePageElement(
+            Children.only(element.props.children),
+            props
+          )
+        }
+      : undefined)
+  });
+}
 
 function PreviewRenderer({
   element,
@@ -15,7 +29,11 @@ function PreviewRenderer({
 }) {
   return (
     <>
-      {data ? cloneElement(element, { data }) : <div>Preparing preview…</div>}
+      {data ? (
+        deepClonePageElement(element, { data })
+      ) : (
+        <div>Preparing preview…</div>
+      )}
       <PreviewUIComponent
         setPollInterval={setPollInterval}
         pollInterval={pollInterval}
