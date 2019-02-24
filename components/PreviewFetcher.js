@@ -48,7 +48,7 @@ function PreviewFetcher({
         ...elementProps.data,
         [fieldName]: prefixTypename(fetchedData, typeName)
       },
-      key: murmurhash(fetchedData).result()
+      key: murmurhash(JSON.stringify(fetchedData)).result()
     };
   }
 
