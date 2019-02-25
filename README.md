@@ -13,7 +13,10 @@ Currently this works by doing the following:
 - The duplicated pages do not render the static data but instead query your
   graphql source via apollo-client.
 
-## Stuff to figure out
+## To do
 
-- warp-page needs a specific ssr behaviour where it does not attempt to load any
-  data. Currently it complains about not usind node-fetch.
+- Configuration
+  - Add option to set or transform path for preview pages
+  - Add option for custom PreviewUI component
+  - Shall this steal graphql options from `gatsby-source-graphql`?
+- Add documentation and examples
