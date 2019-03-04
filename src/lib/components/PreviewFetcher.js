@@ -60,7 +60,7 @@ function PreviewFetcher({
       pollInterval={pollInterval}
       error={error}
       loading={loading}
-      refetch={refetch}
+      refetch={() => refetch}
       data={mergedDataPropsRef.current.data}
       key={mergedDataPropsRef.current.key}
     />
