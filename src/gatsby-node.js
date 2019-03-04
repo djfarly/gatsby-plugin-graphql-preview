@@ -1,4 +1,4 @@
-const { PREVIEW_CONTEXT } = require('./const');
+const { PREVIEW_CONTEXT } = require('./lib/const');
 const gql = require('graphql-tag');
 const traverse = require('traverse');
 const cloneDeep = require('lodash.clonedeep');
