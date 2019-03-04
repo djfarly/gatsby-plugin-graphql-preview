@@ -19,7 +19,6 @@ const cache = new InMemoryCache({ fragmentMatcher });
 // eslint-disable-next-line react/prop-types,react/display-name
 exports.default = ({ element, props }, options) => {
   const componentId = props.pageContext[PREVIEW_CONTEXT];
-  console.log({ componentId });
   const isolatedQuery = isolatedQueries[componentId];
 
   if (!isolatedQuery) return element;
