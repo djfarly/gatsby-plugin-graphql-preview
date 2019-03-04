@@ -2,25 +2,25 @@
   "name": "gatsby-plugin-graphql-preview",
   "version": "0.0.0-development",
   "description": "",
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "npm run clean",
     "build": "babel src --out-dir .",
-    "clean": "rimraf lib gatsby-browser.js gatsby-node.js gatsby-ssr.js",
+    "clean": "rimraf lib gatsby-browser.js gatsby-node.js gatsby-ssr.js index.js",
     "semantic-release": "semantic-release",
     "commit": "git cz"
   },
   "keywords": [
     "gatsby",
     "gatsby-plugin"
-
   ],
   "author": "",
   "license": "ISC",
   "files": [
     "lib",
-    "gatsby-*.js"
+    "gatsby-*.js",
+    "index.js"
   ],
   "dependencies": {
     "apollo-boost": "^0.1.28",
