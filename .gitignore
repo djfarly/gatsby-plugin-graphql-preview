@@ -1,6 +1,3 @@
 node_modules
-/components
+/lib
 /gatsby-*.js
-/index.js
-/const.js
-/wrap-page*.js

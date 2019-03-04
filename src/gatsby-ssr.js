@@ -1,1 +1,1 @@
-exports.wrapPageElement = require(`./wrap-page-ssr`).default;
+exports.wrapPageElement = require(`./lib/wrap-page-ssr`).default;
