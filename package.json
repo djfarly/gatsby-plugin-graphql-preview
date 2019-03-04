@@ -8,7 +8,8 @@
     "prebuild": "npm run clean",
     "build": "babel src --out-dir .",
     "clean": "rimraf lib gatsby-browser.js gatsby-node.js gatsby-ssr.js",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "commit": "git cz"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +31,8 @@
     "@babel/core": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
+    "commitizen": "^3.0.7",
+    "cz-conventional-changelog": "^2.1.0",
     "eslint": "5.15.0",
     "eslint-plugin-react": "^7.12.4",
     "rimraf": "^2.6.3",
@@ -38,5 +41,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/djfarly/gatsby-plugin-graphql-preview.git"
+  },
+  "config": {
+    "commitizen": {
+    "path": "node_modules/cz-conventional-changelog"
+    }
   }
 }
