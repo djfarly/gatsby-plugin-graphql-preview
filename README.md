@@ -1,38 +1,43 @@
 # Gatsby Plugin GraphQL Preview
 
-> A plugin to automatically make the source-graphql parts of your application
-> available as a live updating preview.
+_This plugin is in a pretty early status. Use at your own risk._
 
-_Even though this seems to work, it still needs some more testing to make sure,
-that there a no edge cases. Use at your own risk._
+> **This Gatsby plugin automatically makes the source-graphql parts of your
+> application available as a live updating preview.**
 
 This plugin works by doing the following:
 
-- Everytime a page is created, this plugin makes a copy of it.
-- It grabs the graphql query of the page, isoloates the parts that belong to
-  your graphql source, and webpack defines it as a global variable.
-- The duplicated pages do not render the static data but instead query your
-  graphql source via apollo-client.
+1. Everytime a page is created, make a (marked) copy of it.
+2. Grab the pages graphql query, isoloate the parts that belong to the remote
+   graphql source and make it available to the copied page.
+3. Wrap each copied and marked page inside an apollo setup, that replaces the
+   statically queried remote data with fresh data queried on the client.
+4. Add a tiny UI to control how and when to re-query the data.
 
-**Therefore it only works conjunction with `gatsby-source-graphql`.**
+It only works conjunction with `gatsby-source-graphql`.
 
 ## Install
+
+with yarn
 
 ```
 yarn add gatsby-plugin-graphql-preview
 ```
 
-or
+<details>
+<summary>with npm</summary>
 
 ```
 npm install --save gatsby-plugin-graphql-preview
 ```
 
+</details>
+
 ## How to use
 
-Add the plugin to the plugins array in your `gatsby-config.js`. It requires the
-same configuration options as gatsby-source-graphql. I'd suggest extracting the
-configuration into a variable instead of copying in.
+Add the plugin to the plugins array in your `gatsby-config.js`.
+
+It requires the same configuration options as gatsby-source-graphql. I'd suggest extracting the configuration into a variable instead of copying it.
 
 _`gatsby-source-graphql`s `createLink` is not yet supported. The `url` field is
 required._
@@ -67,6 +72,8 @@ which interval the endpoint should be polled.
 ## To do
 
 - Configuration
-  - Add option to set or transform path for preview pages
-  - Add option for custom PreviewUI component
+  - Add option to set or transform path for preview pages (currently hardcoded)
+  - Add option for custom PreviewUI component (currently hardcoded)
 - Improve documentation and add examples
+- Add tests
+- Create cool example gif
