@@ -1,2 +1,6 @@
 node_modules
-demo
+/components
+/gatsby-*.js
+/index.js
+/const.js
+/wrap-page*.js
