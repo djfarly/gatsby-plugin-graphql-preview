@@ -2,6 +2,8 @@
 
 _This plugin is in a pretty early status. Use at your own risk._
 
+_Requires React 16.8 or newer (it uses hooks 🤫)_
+
 > **This Gatsby plugin automatically makes the source-graphql parts of your
 > application available as a live updating preview.**
 
@@ -37,7 +39,8 @@ npm install --save gatsby-plugin-graphql-preview
 
 Add the plugin to the plugins array in your `gatsby-config.js`.
 
-It requires the same configuration options as gatsby-source-graphql. I'd suggest extracting the configuration into a variable instead of copying it.
+It requires the same configuration options as gatsby-source-graphql. I'd suggest
+extracting the configuration into a variable instead of copying it.
 
 _`gatsby-source-graphql`s `createLink` is not yet supported. The `url` field is
 required._
