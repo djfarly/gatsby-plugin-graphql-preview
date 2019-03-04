@@ -14,46 +14,55 @@ This plugin works by doing the following:
 - The duplicated pages do not render the static data but instead query your
   graphql source via apollo-client.
 
-__Therefore it only works conjunction with `gatsby-source-graphql`.__
+**Therefore it only works conjunction with `gatsby-source-graphql`.**
 
 ## Install
 
 ```
 yarn add gatsby-plugin-graphql-preview
-```  
+```
+
 or
+
 ```
 npm install --save gatsby-plugin-graphql-preview
 ```
 
 ## How to use
 
-Add the plugin to the plugins array in your `gatsby-config.js`. It requires the same configuration options as gatsby-source-graphql. I'd suggest extracting the configuration into a variable instead of copying in. 
+Add the plugin to the plugins array in your `gatsby-config.js`. It requires the
+same configuration options as gatsby-source-graphql. I'd suggest extracting the
+configuration into a variable instead of copying in.
 
-_`gatsby-source-graphql`s `createLink` is not yet supported. The `url` field is required._
+_`gatsby-source-graphql`s `createLink` is not yet supported. The `url` field is
+required._
 
 ```javascript
 // In your gatsby-config.js
 
 const graphqlOptions = {
-  typeName: "SWAPI",
-  fieldName: "swapi",
-  url: "https://api.graphcms.com/simple/v1/swapi",
+  typeName: 'SWAPI',
+  fieldName: 'swapi',
+  url: 'https://api.graphcms.com/simple/v1/swapi',
 };
 
 module.exports = {
   plugins: [
     {
-      resolve: "gatsby-source-graphql",
+      resolve: 'gatsby-source-graphql',
       options: graphqlOptions,
     },
     {
-      resolve: "gatsby-plugin-graphql-preview",
+      resolve: 'gatsby-plugin-graphql-preview',
       options: graphqlOptions,
     },
   ],
-}
+};
 ```
+
+Open a page that includes a query to your graphql-source and prepend `_preview/`
+to your pathname in the browser. It should include a small ui to configure in
+which interval the endpoint should be polled.
 
 ## To do
 
