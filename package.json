@@ -11,7 +11,11 @@
     "semantic-release": "semantic-release",
     "commit": "git cz"
   },
-  "keywords": [],
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin"
+
+  ],
   "author": "",
   "license": "ISC",
   "files": [
