@@ -1,0 +1,24 @@
+language: node_js
+
+services:
+  - docker
+
+node_js:
+  - 11
+
+branches:
+  only:
+    - master
+
+# Retry install on fail to avoid failing a build on network/disk/external errors
+install:
+  - travis_retry npm install
+
+script:
+  - npm run test
+
+jobs:
+  include:
+    - stage: release
+      script:
+        - npm run semantic-release
