@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "d": "eslint --debug gatsby-node.js"
+    "build": "babel src --out-dir ."
   },
   "keywords": [],
   "author": "",
@@ -23,6 +23,8 @@
     "traverse": "^0.6.6"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
     "babel-eslint": "^10.0.1",
     "eslint": "5.15.0",
     "eslint-plugin-react": "^7.12.4"
