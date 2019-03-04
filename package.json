@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "d": "eslint --debug gatsby-node.js"
   },
   "keywords": [],
   "author": "",
@@ -20,5 +21,10 @@
     "react-apollo-hooks": "^0.4.0",
     "react-draggable": "^3.1.1",
     "traverse": "^0.6.6"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "5.15.0",
+    "eslint-plugin-react": "^7.12.4"
   }
 }

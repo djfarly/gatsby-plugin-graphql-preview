@@ -1,5 +1,15 @@
 {
+  "parser": "babel-eslint",
+  "plugins": ["react"],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "globals": {
-    "GATSBY_PLUGIN_GRAPHQL_PREVIEW_ISOLATED_QUERIES": false
+    "GATSBY_PLUGIN_GRAPHQL_PREVIEW_ISOLATED_QUERIES": false,
+    "GATSBY_PLUGIN_GRAPHQL_PREVIEW_FRAGMENT_TYPES": false
   }
 }

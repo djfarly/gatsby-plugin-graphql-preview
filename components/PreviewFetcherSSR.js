@@ -7,7 +7,7 @@ const noop = () => {};
 function PreviewFetcherSSR({
   element,
   PreviewUIComponent,
-  initalPollInterval
+  initalPollInterval,
 }) {
   return (
     <PreviewRenderer
@@ -26,7 +26,7 @@ function PreviewFetcherSSR({
 PreviewFetcherSSR.propTypes = {
   element: PropTypes.element.isRequired,
   PreviewUIComponent: PropTypes.func.isRequired,
-  initalPollInterval: PropTypes.number.isRequired
+  initalPollInterval: PropTypes.number.isRequired,
 };
 
 exports.default = PreviewFetcherSSR;

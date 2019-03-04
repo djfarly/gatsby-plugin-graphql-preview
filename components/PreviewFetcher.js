@@ -27,7 +27,7 @@ function PreviewFetcher({
   typeName,
   isolatedQuery,
   PreviewUIComponent,
-  initialPollInterval
+  initialPollInterval,
 }) {
   const [pollInterval, setPollInterval] = useState(initialPollInterval);
 
@@ -36,8 +36,8 @@ function PreviewFetcher({
     {
       pollInterval,
       notifyOnNetworkStatusChange: true,
-      variables: elementProps.pageContext
-    }
+      variables: elementProps.pageContext,
+    },
   );
 
   const mergedDataPropsRef = useRef({ data: null, key: null });
@@ -46,9 +46,9 @@ function PreviewFetcher({
     mergedDataPropsRef.current = {
       data: {
         ...elementProps.data,
-        [fieldName]: prefixTypename(fetchedData, typeName)
+        [fieldName]: prefixTypename(fetchedData, typeName),
       },
-      key: murmurhash(JSON.stringify(fetchedData)).result()
+      key: murmurhash(JSON.stringify(fetchedData)).result(),
     };
   }
 
@@ -74,7 +74,7 @@ PreviewFetcher.propTypes = {
   typeName: PropTypes.string.isRequired,
   isolatedQuery: PropTypes.object.isRequired,
   PreviewUIComponent: PropTypes.func.isRequired,
-  initialPollInterval: PropTypes.number.isRequired
+  initialPollInterval: PropTypes.number.isRequired,
 };
 
 exports.default = PreviewFetcher;

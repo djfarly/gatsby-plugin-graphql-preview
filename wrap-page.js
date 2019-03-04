@@ -12,7 +12,7 @@ const isolatedQueries = GATSBY_PLUGIN_GRAPHQL_PREVIEW_ISOLATED_QUERIES;
 const fragmentTypes = GATSBY_PLUGIN_GRAPHQL_PREVIEW_FRAGMENT_TYPES;
 
 const fragmentMatcher = new IntrospectionFragmentMatcher({
-  introspectionQueryResultData: fragmentTypes
+  introspectionQueryResultData: fragmentTypes,
 });
 const cache = new InMemoryCache({ fragmentMatcher });
 
@@ -31,8 +31,8 @@ exports.default = ({ element, props }, options) => {
     link: new HttpLink({
       uri: url,
       headers,
-      credentials
-    })
+      credentials,
+    }),
   });
 
   return (

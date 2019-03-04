@@ -10,10 +10,10 @@ function deepClonePageElement(element, props) {
       ? {
           children: deepClonePageElement(
             Children.only(element.props.children),
-            props
-          )
+            props,
+          ),
         }
-      : undefined)
+      : undefined),
   });
 }
 
@@ -25,7 +25,7 @@ function PreviewRenderer({
   error,
   loading,
   refetch,
-  data
+  data,
 }) {
   return (
     <>
@@ -54,7 +54,7 @@ PreviewRenderer.propTypes = {
   refetch: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.object,
-  data: PropTypes.oneOfType([PropTypes.object, PropTypes.oneOf([null])])
+  data: PropTypes.oneOfType([PropTypes.object, PropTypes.oneOf([null])]),
 };
 
 exports.default = PreviewRenderer;

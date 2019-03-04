@@ -12,7 +12,7 @@ const style = {
     left: 0,
     border: '1px solid rgba(255, 255, 255, 1)',
     backgroundColor: 'rgba(240, 240, 240, 0.75)',
-    boxShadow: '2px 2px 10px rgba(0, 0, 0, 0.15)'
+    boxShadow: '2px 2px 10px rgba(0, 0, 0, 0.15)',
   },
   handle: {
     float: 'right',
@@ -20,8 +20,8 @@ const style = {
     backgroundColor: 'rgba(255, 255, 255, 1)',
     color: 'rgba(128, 128, 128, .75)',
     borderRadius: 5,
-    cursor: 'move'
-  }
+    cursor: 'move',
+  },
 };
 
 function PreviewUI({ setPollInterval, pollInterval, refetch, loading, error }) {
@@ -67,7 +67,7 @@ PreviewUI.propTypes = {
     .isRequired,
   refetch: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  error: PropTypes.object
+  error: PropTypes.object,
 };
 
 exports.default = PreviewUI;
