@@ -14,6 +14,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "files": [
+    "lib",
+    "gatsby-*.js"
+  ],
   "dependencies": {
     "apollo-boost": "^0.1.28",
     "apollo-client": "^2.4.13",
