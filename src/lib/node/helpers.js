@@ -1,24 +1,11 @@
 const gql = require('graphql-tag');
 const traverse = require('traverse');
-const cloneDeep = require('lodash.clonedeep');
 const murmurhash = require('imurmurhash');
 const fetch = require('node-fetch');
 
 exports.getComponentId = function getComponentId(componentPath) {
   return murmurhash(componentPath).result().toString(36);
 };
-
-// const getQuery = query => {
-//   if (typeof query === 'object' && query.definitions) {
-//     return query;
-//   } else if (typeof query === 'string') {
-//     return gql(query);
-//   } else if (typeof query === 'object' && query.source) {
-//     return gql(query.source);
-//   } else {
-//     throw new Error('Could not parse query: ' + query);
-//   }
-// };
 
 function doesQueryUseFragment(query, fragment) {
   let queryUsesFragment = false;
@@ -53,8 +40,7 @@ exports.getIsolatedQuery = function getIsolatedQuery(
   fieldName,
   typeName,
 ) {
-  const query = gql(querySource);
-  const updatedQuery = cloneDeep(query);
+  const updatedQuery = traverse(gql(querySource)).clone();
 
   const updatedRoot = updatedQuery.definitions[0].selectionSet.selections.find(
     selection =>

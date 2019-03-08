@@ -1,10 +1,13 @@
 const { getComponentId } = require('./helpers');
 const { PREVIEW_CONTEXT } = require('../const');
 
-exports.default = ({ page, actions: { createPage } }) => {
+/**
+ * append our component id onto every page
+ */
+exports.default = ({ page, actions: { createPage, deletePage } }) => {
+  deletePage({ ...page });
   createPage({
     ...page,
-    path: `/_preview${page.path}`,
     context: {
       ...page.context,
       [PREVIEW_CONTEXT]: getComponentId(page.componentPath),

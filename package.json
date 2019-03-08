@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "npm run clean",
     "build": "babel src --out-dir .",
-    "clean": "rimraf lib gatsby-browser.js gatsby-node.js gatsby-ssr.js index.js",
+    "clean": "rimraf lib gatsby-browser.js gatsby-node.js index.js",
     "semantic-release": "semantic-release",
     "commit": "git cz"
   },
@@ -28,8 +28,8 @@
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
     "imurmurhash": "^0.1.4",
-    "lodash.clonedeep": "^4.5.0",
     "node-fetch": "^2.3.0",
+    "query-string": "^6.3.0",
     "react-apollo-hooks": "^0.4.0",
     "react-draggable": "^3.1.1",
     "traverse": "^0.6.6"
