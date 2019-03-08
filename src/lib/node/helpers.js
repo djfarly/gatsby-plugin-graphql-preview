@@ -5,7 +5,7 @@ const murmurhash = require('imurmurhash');
 const fetch = require('node-fetch');
 
 exports.getComponentId = function getComponentId(componentPath) {
-  return murmurhash(componentPath).result();
+  return murmurhash(componentPath).result().toString(36);
 };
 
 // const getQuery = query => {
