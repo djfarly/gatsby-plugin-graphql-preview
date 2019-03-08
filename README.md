@@ -1,20 +1,20 @@
 # Gatsby Plugin GraphQL Preview
 
-_This plugin is in a pretty early status. Use at your own risk._
-
-_Requires React 16.8 or newer (it uses hooks 🤫)_
-
-> **This Gatsby plugin automatically makes the source-graphql parts of your
+> **A Gatsby plugin to automatically make the source-graphql parts of your
 > application available as a live updating preview.**
 
-This plugin works by doing the following:
+_This plugin is in a pretty early status. Use at your own risk._
 
-1. Everytime a page is created, make a (marked) copy of it.
-2. Grab the pages graphql query, isoloate the parts that belong to the remote
-   graphql source and make it available to the copied page.
-3. Wrap each copied and marked page inside an apollo setup, that replaces the
-   statically queried remote data with fresh data queried on the client.
-4. Add a tiny UI to control how and when to re-query the data.
+Requires React 16.8 or newer. (it uses hooks 🤫)
+
+This works by doing the following:
+
+1. Grab the pages graphql query, isoloate the parts that belong to the remote
+   graphql source and make it available to the page.
+2. If on the client, the query paramter perview has a truthy value, wrap the
+   page inside an apollo setup, that replaces the statically queried remote data
+   with fresh data queried on the client.
+3. Add a tiny UI to control how and when to re-query the data.
 
 It only works conjunction with `gatsby-source-graphql`.
 
@@ -68,14 +68,14 @@ module.exports = {
 };
 ```
 
-Open a page that includes a query to your graphql-source and prepend `_preview/`
+Open a page that includes a query to your graphql-source and append `?preview=1`
 to your pathname in the browser. It should include a small ui to configure in
 which interval the endpoint should be polled.
 
 ## To do
 
 - Configuration
-  - Add option to set or transform path for preview pages (currently hardcoded)
+  - Add option to configure the serach/query param (currently hardcoded)
   - Add option for custom PreviewUI component (currently hardcoded)
 - Improve documentation and add examples
 - Add tests
