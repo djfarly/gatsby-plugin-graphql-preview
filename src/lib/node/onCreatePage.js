@@ -1,7 +1,7 @@
 const { getComponentId } = require('./helpers');
 const { PREVIEW_CONTEXT } = require('../const');
 
-exports = ({ page, actions: { createPage } }) => {
+exports.default = ({ page, actions: { createPage } }) => {
   createPage({
     ...page,
     path: `/_preview${page.path}`,

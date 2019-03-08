@@ -4,7 +4,7 @@ const {
   getFragmentTypes,
 } = require('./helpers');
 
-exports = async (
+exports.default = async (
   { store, actions, plugins },
   { fieldName, typeName, url, headers, credentials },
 ) => {

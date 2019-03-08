@@ -20,7 +20,7 @@ exports.getComponentId = function getComponentId(componentPath) {
 //   }
 // };
 
-exports.doesQueryUseFragment = function doesQueryUseFragment(query, fragment) {
+function doesQueryUseFragment(query, fragment) {
   let queryUsesFragment = false;
   traverse(query).forEach(function(currentValue) {
     // We're looking for this kind of construct

@@ -17,7 +17,7 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 const cache = new InMemoryCache({ fragmentMatcher });
 
 // eslint-disable-next-line react/prop-types,react/display-name
-exports = ({ element, props }, options) => {
+exports.default = ({ element, props }, options) => {
   const componentId = props.pageContext[PREVIEW_CONTEXT];
   const isolatedQuery = isolatedQueries[componentId];
 
