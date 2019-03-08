@@ -1,7 +1,7 @@
 const React = require(`react`);
-const { PREVIEW_CONTEXT } = require('./const');
-const PreviewUIComponent = require('./components/PreviewUI').default;
-const PreviewFetcherSSR = require('./components/PreviewFetcherSSR').default;
+const { PREVIEW_CONTEXT } = require('../const');
+const PreviewUIComponent = require('../components/PreviewUI').default;
+const PreviewFetcherSSR = require('../components/PreviewFetcherSSR').default;
 
 // eslint-disable-next-line react/prop-types,react/display-name
 exports.default = ({ element, props }) => {
