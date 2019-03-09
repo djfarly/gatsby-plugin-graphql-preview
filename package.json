@@ -46,6 +46,10 @@
     "rimraf": "^2.6.3",
     "semantic-release": "^15.13.3"
   },
+  "peerDependencies": {
+    "gatsby": ">=2",
+    "react": ">=16.8"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/djfarly/gatsby-plugin-graphql-preview.git"
