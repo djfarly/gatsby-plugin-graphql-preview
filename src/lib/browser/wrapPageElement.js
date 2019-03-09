@@ -19,15 +19,22 @@ const cache = new InMemoryCache({ fragmentMatcher });
 
 // eslint-disable-next-line react/prop-types,react/display-name
 exports.default = ({ element, props }, options) => {
+  const {
+    previewQueryParam = 'preview',
+    fieldName,
+    typeName,
+    url,
+    headers,
+    credentials,
+  } = options;
+
   const queryParams = queryString.parse(props.location.search);
-  if (!queryParams.preview) return element;
+  if (!queryParams[previewQueryParam]) return element;
 
   const componentId = props.pageContext[PREVIEW_CONTEXT];
   const isolatedQuery = isolatedQueries[componentId];
 
   if (!isolatedQuery) return element;
-
-  const { fieldName, typeName, url, headers, credentials } = options;
 
   const client = new ApolloClient({
     cache,
