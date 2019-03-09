@@ -1,7 +1,7 @@
 # Gatsby Plugin GraphQL Preview
 
 **A Gatsby plugin to automatically make the source-graphql parts of your
-application available as a live updating preview.**
+application available as a live preview.**
 
 This works by doing the following:
 
@@ -42,7 +42,7 @@ _`gatsby-source-graphql`s `createLink` is not yet supported. The `url` field is
 required._
 
 The plugins own option(s) can be added by spreading the graphql options into a
-new object. The option(s) defined below reflects it's default value.
+new object.
 
 ```javascript
 // In your gatsby-config.js
@@ -63,7 +63,7 @@ module.exports = {
       resolve: 'gatsby-plugin-graphql-preview',
       options: {
         ...graphqlOptions,
-        previewQueryParam: 'preview',
+        previewQueryParam: 'preview', // preview is the default
       },
     },
   ],
@@ -71,7 +71,7 @@ module.exports = {
 ```
 
 Open a page that includes a query to your graphql-source and append 
-`?<previewQueryParam>=1` (make sure it's truthy) to the pathname in the browser.
+`?<previewQueryParam>=1` to the pathname in the browser.
 
 Example: `localhost:8000/my-page?preview=1`
 
