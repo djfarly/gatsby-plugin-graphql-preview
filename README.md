@@ -1,22 +1,18 @@
 # Gatsby Plugin GraphQL Preview
 
-_This plugin is in a pretty early status. Use at your own risk._
+**A Gatsby plugin to automatically make the source-graphql parts of your
+application available as a live preview.**
 
-_Requires React 16.8 or newer (it uses hooks 🤫)_
+This works by doing the following:
 
-> **This Gatsby plugin automatically makes the source-graphql parts of your
-> application available as a live updating preview.**
+1. Grab the pages graphql query, isoloate the parts that belong to the remote
+   graphql source and make it available to the page.
+2. If on the client, the query paramter perview has a truthy value, wrap the
+   page inside an apollo setup, that replaces the statically queried remote data
+   with fresh data queried on the client.
+3. Add a tiny UI to control how and when to re-query the data.
 
-This plugin works by doing the following:
-
-1. Everytime a page is created, make a (marked) copy of it.
-2. Grab the pages graphql query, isoloate the parts that belong to the remote
-   graphql source and make it available to the copied page.
-3. Wrap each copied and marked page inside an apollo setup, that replaces the
-   statically queried remote data with fresh data queried on the client.
-4. Add a tiny UI to control how and when to re-query the data.
-
-It only works conjunction with `gatsby-source-graphql`.
+Only works conjunction with `gatsby-source-graphql`.
 
 ## Install
 
@@ -45,6 +41,9 @@ extracting the configuration into a variable instead of copying it.
 _`gatsby-source-graphql`s `createLink` is not yet supported. The `url` field is
 required._
 
+The plugins own option(s) can be added by spreading the graphql options into a
+new object.
+
 ```javascript
 // In your gatsby-config.js
 
@@ -62,21 +61,19 @@ module.exports = {
     },
     {
       resolve: 'gatsby-plugin-graphql-preview',
-      options: graphqlOptions,
+      options: {
+        ...graphqlOptions,
+        previewQueryParam: 'preview', // preview is the default
+      },
     },
   ],
 };
 ```
 
-Open a page that includes a query to your graphql-source and prepend `_preview/`
-to your pathname in the browser. It should include a small ui to configure in
-which interval the endpoint should be polled.
+Open a page that includes a query to your graphql-source and append 
+`?<previewQueryParam>=1` to the pathname in the browser.
 
-## To do
+Example: `localhost:8000/my-page?preview=1`
 
-- Configuration
-  - Add option to set or transform path for preview pages (currently hardcoded)
-  - Add option for custom PreviewUI component (currently hardcoded)
-- Improve documentation and add examples
-- Add tests
-- Create cool example gif
+The page should now include a small ui to configure in which interval the
+endpoint should be polled.
