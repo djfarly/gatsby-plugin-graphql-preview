@@ -1,11 +1,7 @@
 # Gatsby Plugin GraphQL Preview
 
-> **A Gatsby plugin to automatically make the source-graphql parts of your
-> application available as a live updating preview.**
-
-_This plugin is in a pretty early status. Use at your own risk._
-
-Requires React 16.8 or newer. (it uses hooks 🤫)
+**A Gatsby plugin to automatically make the source-graphql parts of your
+application available as a live updating preview.**
 
 This works by doing the following:
 
@@ -16,7 +12,7 @@ This works by doing the following:
    with fresh data queried on the client.
 3. Add a tiny UI to control how and when to re-query the data.
 
-It only works conjunction with `gatsby-source-graphql`.
+Only works conjunction with `gatsby-source-graphql`.
 
 ## Install
 
@@ -45,6 +41,9 @@ extracting the configuration into a variable instead of copying it.
 _`gatsby-source-graphql`s `createLink` is not yet supported. The `url` field is
 required._
 
+The plugins own option(s) can be added by spreading the graphql options into a
+new object. The option(s) defined below reflects it's default value.
+
 ```javascript
 // In your gatsby-config.js
 
@@ -62,21 +61,19 @@ module.exports = {
     },
     {
       resolve: 'gatsby-plugin-graphql-preview',
-      options: graphqlOptions,
+      options: {
+        ...graphqlOptions,
+        previewQueryParam: 'preview',
+      },
     },
   ],
 };
 ```
 
-Open a page that includes a query to your graphql-source and append `?preview=1`
-to your pathname in the browser. It should include a small ui to configure in
-which interval the endpoint should be polled.
+Open a page that includes a query to your graphql-source and append 
+`?<previewQueryParam>=1` (make sure it's truthy) to the pathname in the browser.
 
-## To do
+Example: `localhost:8000/my-page?preview=1`
 
-- Configuration
-  - Add option to configure the serach/query param (currently hardcoded)
-  - Add option for custom PreviewUI component (currently hardcoded)
-- Improve documentation and add examples
-- Add tests
-- Create cool example gif
+The page should now include a small ui to configure in which interval the
+endpoint should be polled.
