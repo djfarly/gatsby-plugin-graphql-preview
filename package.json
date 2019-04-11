@@ -23,13 +23,14 @@
     "index.js"
   ],
   "dependencies": {
+    "@babel/runtime": "^7.4.0",
     "apollo-boost": "^0.1.28",
     "apollo-client": "^2.4.13",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
     "imurmurhash": "^0.1.4",
     "node-fetch": "^2.3.0",
-    "query-string": "^6.3.0",
+    "query-string": "^5.1.1",
     "react-apollo-hooks": "^0.4.0",
     "react-draggable": "^3.1.1",
     "traverse": "^0.6.6"
@@ -37,6 +38,8 @@
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
+    "@babel/plugin-transform-runtime": "^7.4.0",
+    "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "commitizen": "^3.0.7",
@@ -54,6 +57,10 @@
     "type": "git",
     "url": "https://github.com/djfarly/gatsby-plugin-graphql-preview.git"
   },
+  "browserslist": [
+    ">0.25%",
+    "not op_mini all"
+  ],
   "config": {
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"

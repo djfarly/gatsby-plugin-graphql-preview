@@ -8,7 +8,7 @@ exports.default = async (
   { store, actions, plugins },
   { fieldName, typeName, url, headers, credentials },
 ) => {
-  isolatedQueries = {};
+  const isolatedQueries = {};
   for (let [componentPath, { query }] of store.getState().components) {
     isolatedQueries[getComponentId(componentPath)] = query
       ? getIsolatedQuery(query, fieldName, typeName)
